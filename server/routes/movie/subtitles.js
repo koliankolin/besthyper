@@ -31,9 +31,9 @@ async function searchSub(req, res) {
 	function gogoRes(err, sub) {
 		if (err)
 		{
-			if (sub === 'fr' && freSub[1])
+			if (sub === 'rus' && freSub[1])
 				return dlUnzipConvert(freSub[1].SubDownloadLink,
-					imdb, 'fr', gogoRes)
+					imdb, 'rus', gogoRes)
 			else if (sub === 'eng' && engSub[1])
 				return dlUnzipConvert(engSub[1].SubDownloadLink,
 					imdb, 'eng', gogoRes)
@@ -52,7 +52,7 @@ async function searchSub(req, res) {
 	if (freSub.length > 0)
 	{
 		sendres += 1;
-		dlUnzipConvert(freSub[0].SubDownloadLink, imdb, 'fr', gogoRes)
+		dlUnzipConvert(freSub[0].SubDownloadLink, imdb, 'rus', gogoRes)
 	}
 	if (engSub.length > 0)
 	{
@@ -62,7 +62,7 @@ async function searchSub(req, res) {
 }
 
 async function searchSubFiles(imdb) {
-	freLang = axios.get(`https://rest.opensubtitles.org/search/imdbid-${imdb}/sublanguageid-fre`, {headers : {'X-User-Agent': 'TemporaryUserAgent'}});
+	freLang = axios.get(`https://rest.opensubtitles.org/search/imdbid-${imdb}/sublanguageid-rus`, {headers : {'X-User-Agent': 'TemporaryUserAgent'}});
 	engLang = axios.get(`https://rest.opensubtitles.org/search/imdbid-${imdb}/sublanguageid-eng`, {headers : {'X-User-Agent': 'TemporaryUserAgent'}});
 	try {
 		let [fre, eng] = await Promise.all([freLang, engLang]);
@@ -87,8 +87,9 @@ function dlUnzipConvert(url, imdb, lang, gogoRes) {
 				srt2vtt(buffer, (err, vttData) => {
 					if (err)
 						throw err;
-					var path = `/files/subtitles/${imdb}_${lang}.vtt`;
-					fs.writeFileSync('.'+path, vttData);
+					var path = `./files/subtitles/${imdb}_${lang}.vtt`;
+					console.log(path)
+					fs.writeFileSync(path, vttData);
 					return gogoRes(false, {path: path, lang: lang});
 				});
 			});

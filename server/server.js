@@ -22,7 +22,7 @@ const dbServer = 'localhost';
 const database = 'hypertube';
 
 //DATABASE ET CONNEXION
-mongoose.connect(`mongodb://${dbServer}/${database}`, {
+mongoose.connect(`mongodb+srv://user:user@hypertube-re3ev.mongodb.net/test?retryWrites=true&w=majority`, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
 	useUnifiedTopology: true

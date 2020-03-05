@@ -1,6 +1,6 @@
 const process = require('process');
 const mongoose = require('mongoose');
-mongoose.connect(`mongodb://localhost/hypertube`, {
+mongoose.connect(`mongodb+srv://user:user@hypertube-re3ev.mongodb.net/test?retryWrites=true&w=majority`, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
 	useUnifiedTopology: true

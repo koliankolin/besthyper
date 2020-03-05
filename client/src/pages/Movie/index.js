@@ -93,8 +93,18 @@ export default function Movie({ imdb }) {
 			+ `imdb=${imdb}&quality=${quality}`)
 		try {
 			let res = await axios.get(`/movie/subtitles/?imdb=${imdb}`);
-			if (res.data)
+
+
+			if (res.data) {
+				console.log(res.data);
+				res.data = res.data.map((sub) => {
+					sub.path = 'http://localhost:3000' + sub.path.slice(1);
+					return sub;
+				});
+				console.log(res.data);
 				setSubtitles(res.data);
+			}
+
 			if (!state.views.find(e => e.title === movie.title))
 			{
 				axios.post(`/user/addview`, {
