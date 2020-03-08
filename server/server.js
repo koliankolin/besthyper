@@ -86,30 +86,7 @@ app.use('/movie', movieRouter);
 app.use('/auth', authRouter);
 
 
-/*
-//ROUTE WITH BUILD -> PROD
-app.get('/', function (req, res) {
-	res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-app.get('/profil', function (req, res) {
-	res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-app.get('/film', function (req, res) {
-	res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-app.get('/activer', function (req, res) {
-	res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-app.get('/motdepasse', function (req, res) {
-	res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-app.get('/membres', function (req, res) {
-	res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-*/
-
 app.use(function(req, res, next) {
-	//res.sendFile(path.join(__dirname, 'build', 'index.html'));//PROD
 	res.status(404).send('Sorry cant find that!');
 });
 app.listen(port, function () {

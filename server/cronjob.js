@@ -48,4 +48,4 @@ let job = new CronJob('0 0 1 * * *', () => {
 	console.log('Checking Database to delete old movies');
 });
 job.start();
-console.log('\x1b[34m', 'Lancement du Cron', '\x1b[0m');
+console.log('\x1b[34m', 'Start cron', '\x1b[0m');
