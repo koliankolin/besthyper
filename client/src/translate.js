@@ -118,7 +118,7 @@ const translate = {
 				},
 				send: {
 					eng: 'Send',
-					fr: 'Отправленно'
+					fr: 'Отправить'
 				},
 				title: {
 					eng: 'Enter your username, you will receive a reset mail',
