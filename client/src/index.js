@@ -15,6 +15,7 @@ import Profile from './pages/Profile';
 import Movie from './pages/Movie/index';
 import Layout from './Layout';
 
+import 'antd/dist/antd.css'
 
 ReactDOM.render(
 	<MuiThemeProvider theme={createHypertubeTheme()} >

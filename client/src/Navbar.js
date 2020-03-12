@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link as RouterLink } from "@reach/router";
 import ts from './translate';
-/* assets */
-import frenchFlagImg from './assets/images/flag_fr.png';
+import frenchFlagImg from './assets/images/flag_ru.png';
 import englishFlagImg from './assets/images/flag_en.png';
 import { useMediaQuery } from '@material-ui/core';
 

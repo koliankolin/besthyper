@@ -48,7 +48,7 @@ function Auth() {
             onChange={handleChange}
             centered={true}
           >
-            <Tab label={trans.login.form.connexion.title[state.lang]} />
+            <Tab label={trans.login.form.connection.title[state.lang]} />
             <Tab label={trans.login.form.registration.title[state.lang]} />
           </Tabs>
           <TabPanel value={value} index={0}>

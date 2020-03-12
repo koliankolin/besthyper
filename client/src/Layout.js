@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import AppBar from './Navbar';
+import AppBar from './pages/Header/Header';
 import axios from 'axios';
 import { navigate } from "@reach/router";
 import { Store } from './store';
@@ -34,7 +34,7 @@ function Layout({ children }) {
 
   return (
     <div>
-      <AppBar auth={state.login} onChangeLang={handleChangeLang} onClickLogout={HandleLogout} lang={state.lang}/>
+      <AppBar isAuthorized={state.login} onChangeLang={handleChangeLang} logout={HandleLogout} lang={state.lang}/>
       <main>
         {children}
       </main>

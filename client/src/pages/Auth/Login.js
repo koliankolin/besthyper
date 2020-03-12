@@ -138,7 +138,7 @@ function Login(props) {
               color="primary"
               className={classes.button}
             >
-              {trans.login.form.connexion.submitButton[state.lang]}
+              {trans.login.form.connection.submitButton[state.lang]}
             </Button>
             <Link
               id="ForgotPwd"
@@ -146,7 +146,7 @@ function Login(props) {
               onClick={() => setForgetPass(true)}
               className={classes.link}
             >
-              {trans.login.form.connexion.forgotPass[state.lang]}
+              {trans.login.form.connection.forgotPass[state.lang]}
             </Link>
           </form>
         </div>

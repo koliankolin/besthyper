@@ -73,7 +73,7 @@ const translate = {
 		},
 
 		form: {
-			connexion: {
+			connection: {
 				title: {
 					eng: 'SIGN IN',
 					fr: 'CONNEXION',
