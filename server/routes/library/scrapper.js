@@ -1,21 +1,7 @@
-/*
-API SCRAPPERS
-##POP CORN https://popcorntime.api-docs.io/api/welcome/introduction
-- https://tv-v2.api-fetch.website/movies -> pour avoir la liste des pages, la 1 etant possedant les films les plus anciens (verif tri)
-- https://tv-v2.api-fetch.website/movies/20?sort=last%20added&order=-1 -> affiche les films de la page 20 trié par date d'ajout decroissante
-
-##YTS https://yts.lt/api
-- https://yts.lt/api/v2/list_movies.json?limit=50&page=2&sort_by=date_added -> affiche les files de la page 2 triés par date d'ajout
-Donc pour avoir les films uploadés les plus recent : 
-https://yts.lt/api/v2/list_movies.json
-*/
-
 const axios = require('axios');
 const cloudscraper = require('cloudscraper');
 
-//FORM THE REQUEST WHICH ARE GOING TO BE DONE BASED ON str
-//POP CORM AND YTS ARE FETCHED
-function selectReq(type = 'popular', page = 1, search = '42') {
+function findMoviesFromApi(type = 'popular', page = 1, search = '42') {
 	let popReq = 'https://tv-v2.api-fetch.website';
 	let ytsReq = 'https://yts.lt/api/v2';
 
@@ -45,10 +31,10 @@ function selectReq(type = 'popular', page = 1, search = '42') {
 }
 
 //PERFORM REQUEST AND RETURN API'S RESULTS ORDER BY POP THEN YTS
-async function fetchAPI(type, page, search) {
+async function getMoviesFromApiReq(type, page, search) {
 	let error = [];
 	let yts, pop;
-	let [popReq, ytsReq] = selectReq(type, page, search);
+	let [popReq, ytsReq] = findMoviesFromApi(type, page, search);
 	try {
 		yts = await cloudscraper({
 			method: 'GET',
@@ -87,4 +73,15 @@ async function fetchAPI(type, page, search) {
 	}
 }
 
-exports.fetchAPI = fetchAPI;
+exports.fetchAPI = getMoviesFromApiReq;
+
+
+/*
+API Sources
+#POP CORN https://popcorntime.api-docs.io/api/welcome/introduction
+- https://tv-v2.api-fetch.website/movies - movies
+- https://tv-v2.api-fetch.website/movies/20?sort=last%20added&order=-1 - sort
+
+#YTS https://yts.lt/api
+- https://yts.lt/api/v2/list_movies.json?limit=50&page=2&sort_by=date_added - last added
+*/

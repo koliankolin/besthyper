@@ -1,7 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const passport = require('passport');
-var ctrl = require('./controller.js');
+const ctrl = require('./controller.js');
+const utilities = require('./utilities');
 
 // IMPORT STRATEGY
 const {
@@ -12,9 +13,9 @@ passport.use(fortytwoStrategy);
 passport.use(gitHubStrategy);
 passport.use(instaStrategy);
 
-router.get('/', ctrl.checkCookie);
-router.post('/registration', ctrl.register);
-router.post('/registration/:name', ctrl.checkFields);
+router.get('/', utilities.checkCookie);
+router.post('/registration', ctrl.registerUser);
+router.post('/registration/:name', utilities.checkFields);
 router.post('/login', function (req, res, next) {
 	passport.authenticate('local', function(err, user, info) {
     if (err) { return res.send({error: err}); }
@@ -28,7 +29,7 @@ router.get('/42',
 	passport.authenticate('42'));
 router.get('/42/return',
 	passport.authenticate('42', { failureRedirect:
-		'http://localhost:3000/auth/login', session: false }), (req, res) => {
+		'http://localhost:3001/auth/login', session: false }), (req, res) => {
 		ctrl.createCookie(req, res, false);
 	});
 router.get('/github', passport.authenticate('github'));

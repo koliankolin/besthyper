@@ -1,14 +1,14 @@
-var User = require('../user/model.js');
+const User = require('../user/model.js');
 const bcrypt = require('bcrypt');
-var utilities = require('./utilities.js');
+const utilities = require('./utilities.js');
 const uuidv1 = require('uuid/v1');
 const formidable = require('formidable');
 const fs = require('fs-extra');
-var jwt  = require('jsonwebtoken');
+const jwt  = require('jsonwebtoken');
 
-async function createUser(strategy, profile) {
+async function createNewUser(strategyPassport, profile) {
 	let user;
-	if (strategy === 'local')
+	if (strategyPassport === 'local')
 	{
 		let pass = bcrypt.hashSync(profile.password, 10);
 		user = User({
@@ -23,7 +23,7 @@ async function createUser(strategy, profile) {
 			complete: true,
 		});
 	}
-	else if (strategy === '42') {
+	else if (strategyPassport === '42') {
 		user = new User({
 			firstname: profile.name.givenName.toLowerCase(),
 			lastname: profile.name.familyName.toLowerCase(),
@@ -34,7 +34,7 @@ async function createUser(strategy, profile) {
 			},
 			avatar: profile.photos[0].value
 		});
-	} else if (strategy === 'github'){
+	} else if (strategyPassport === 'github'){
 		user = new User({
 			sourceId: {
 				source : profile.provider,
@@ -43,7 +43,7 @@ async function createUser(strategy, profile) {
 			mail: profile._json.email,
 			avatar: profile.photos[0].value
 		});
-	} else if (strategy === 'instagram') {
+	} else if (strategyPassport === 'instagram') {
 		user = new User({
 			lastname: profile.name.familyName,
 			firstname: profile.name.givenName,
@@ -56,38 +56,38 @@ async function createUser(strategy, profile) {
 	}
 	try {
 		let result = await user.save();
-		return (result)
+		return result;
 	} catch (e) {
 		if (process.env.MODE === 'DEV')
 			console.error(e);
-		return ({error: "already exists"});
+		return ({error: "User already exists"});
 	}
 }
 
-exports.register = async function (req, res) {
+exports.registerUser = async function (req, res) {
 	let err = [];
 	let img;
-	var form = new formidable.IncomingForm();
+	let form = new formidable.IncomingForm();
 	form.parse(req, async function (error, fields, files) {
 		if (error)
 			return res.send({error: 'unknown'});
-		for (var prop in fields)
+		for (let field in fields)
 		{
-			if (prop === 'cfpassword') {
+			if (field === 'cfpassword') {
 				err.push({
-					field: prop,
-					error: await utilities.checkInfo(prop, fields[prop], fields['password'])
+					field: field,
+					error: await utilities.checkInfo(field, fields[field], fields['password'])
 				});
 			} else {
 				err.push({
-					field: prop,
-					error: await utilities.checkInfo(prop, fields[prop])
+					field: field,
+					error: await utilities.checkInfo(field, fields[field])
 				});
 			}
 		}
 		if (files.file)
 		{
-			img = addAvatar(files.file);
+			img = saveAvatar(files.file);
 			err.push({
 				field: 'img',
 				error: img.error
@@ -99,7 +99,7 @@ exports.register = async function (req, res) {
 			err = err.filter(e => e.error);
 			if (err.length === 0) {
 				let token = uuidv1();
-				let result = await createUser("local", {...fields,
+				let result = await createNewUser("local", {...fields,
 					avatar: img.path, tokenForget: token});
 				if (result.error)
 					res.send({error: result.error});
@@ -112,44 +112,7 @@ exports.register = async function (req, res) {
 				res.send({error: err});
 		}
 	})
-}
-
-exports.checkFields = async function(req, res) {
-	let error;
-	if (req.params.name === 'cfpassword')
-	{
-		error = await utilities.checkInfo(req.params.name, req.body.password,
-			req.body.cfpassword);
-	}
-	else
-		error = await utilities.checkInfo(req.params.name, req.body.value);
-	if (error)
-		res.send({error: error});
-	else
-		res.sendStatus(200);
-}
-
-exports.checkCookie = async function(req, res) {
-	let cookie = req.signedCookies.accessToken;
-	if (cookie)
-	{
-		var decoded = jwt.verify(cookie, process.env.JWT_KEY);
-		if (decoded.id)
-		{
-			let user = await User.findById(decoded.id).exec();
-			if (user)
-				return res.send({
-					id: decoded.id,
-					username: user.username || null,
-					avatar: user.avatar || null,
-					complete: user.complete,
-					lang: user.lang,
-					views: user.views
-				});
-		}
-	}
-	return res.sendStatus(200);
-}
+};
 
 function createCookie(req, res, isLocal) {
 	let token = jwt.sign({id: req.user._id},
@@ -161,10 +124,10 @@ function createCookie(req, res, isLocal) {
 	if (isLocal)
 		return res.send(req.user);
 	else
-		return res.redirect('http://localhost:3000');//3001 en prod
+		return res.redirect('http://localhost:3000');//3001 prod
 }
 
-function addAvatar(file) {
+function saveAvatar(file) {
 	let error = checkImg(file);
 	try {
 		if (error)
@@ -283,6 +246,7 @@ exports.activate = async function (req, res) {
 		}
 	}
 }
-exports.addAvatar = addAvatar;
-exports.createUser = createUser;
+
+exports.addAvatar = saveAvatar;
+exports.createUser = createNewUser;
 exports.createCookie = createCookie;

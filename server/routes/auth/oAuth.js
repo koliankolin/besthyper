@@ -1,11 +1,10 @@
-var OAuthStrategy = require('passport-oauth2').OAuthStrategy;
-var LocalSgy = require('passport-local').Strategy;
-var FortyTwoSgy = require('passport-42').Strategy;
-var GitHubSgy = require('passport-github').Strategy;
-var InstagramSgy = require('passport-instagram').Strategy;
+const LocalSgy = require('passport-local').Strategy;
+const FortyTwoSgy = require('passport-42').Strategy;
+const GitHubSgy = require('passport-github').Strategy;
+const InstagramSgy = require('passport-instagram').Strategy;
 const bcrypt = require('bcrypt');
-var User = require('../user/model.js');
-var ctrl = require('./controller.js');
+const User = require('../user/model.js');
+const ctrl = require('./controller.js');
 
 const localStrategy = new LocalSgy(
 	function(username, password, done) {
@@ -22,7 +21,7 @@ const localStrategy = new LocalSgy(
 	}
 );
 
-const fortytwoStrategy = new FortyTwoSgy({
+const fortyTwoStrategy = new FortyTwoSgy({
 	clientID: process.env.FORTYTWO_APP_ID,
 	clientSecret: process.env.FORTYTWO_APP_SECRET,
 	callbackURL: "http://localhost:3001/auth/42/return",
@@ -97,7 +96,7 @@ const instaStrategy = new InstagramSgy({
 
 module.exports = {
 	localStrategy: localStrategy,
-	fortytwoStrategy: fortytwoStrategy,
+	fortytwoStrategy: fortyTwoStrategy,
 	gitHubStrategy: gitHubStrategy,
 	instaStrategy: instaStrategy
 }

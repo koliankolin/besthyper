@@ -4,9 +4,9 @@ const transporter = nodemailer.createTransport({
 	newline: 'unix',
 	path: '/usr/sbin/sendmail'
 });
-var User = require('../user/model.js');
+const User = require('../user/model.js');
+const jwt  = require('jsonwebtoken');
 
-//FUNCTIONS VALIDATE INPUT BEFORE CHECK MONGOOSE
 exports.checkInfo = async function(type, str, str2) {
 	let error = null;
 
@@ -99,10 +99,10 @@ exports.sendMail = async function(type, email, username, token, lang) {
 		transporter.sendMail({
 			from: '"Hypertube" Hypertube@hypertube.com',
 			to: email,
-			subject: 'Activating your account for Hypertube',
-			text: `Hello ${username},\n`
-			+ "Click on this link or copy it in the search bar,\n"
-			+ "to connect and enjoy Hypertube!\n"
+			subject: 'Please activate your account at HyperTube',
+			text: `Good day, ${username},\n`
+			+ "Click on this link or copy it to your browser,\n"
+			+ "to activate your account at HyperTube!\n"
 			+ `http://localhost:3000/activer/${token}`
 			//	+ `http://localhost:3001/activer/${token}`
 		}, (err, info) => {
@@ -111,4 +111,42 @@ exports.sendMail = async function(type, email, username, token, lang) {
 					console.error(err);
 		});
 	}
+}
+
+exports.checkFields = async function(req, res) {
+	let error;
+	if (req.params.name === 'cfpassword')
+	{
+		error = await checkInfo(req.params.name, req.body.password,
+			req.body.cfpassword);
+	}
+	else
+		error = await checkInfo(req.params.name, req.body.value);
+
+	if (error)
+		res.send({error: error});
+	else
+		res.sendStatus(200);
+};
+
+exports.checkCookie = async function(req, res) {
+	let cookie = req.signedCookies.accessToken;
+	if (cookie)
+	{
+		const userId = jwt.verify(cookie, process.env.JWT_KEY).id;
+		if (userId)
+		{
+			let user = await User.findById(userId).exec();
+			if (user)
+				return res.send({
+					id: user.id,
+					username: user.username || null,
+					avatar: user.avatar || null,
+					complete: user.complete,
+					lang: user.lang,
+					views: user.views
+				});
+		}
+	}
+	return res.sendStatus(200);
 }
