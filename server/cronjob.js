@@ -1,13 +1,13 @@
 const fs = require('fs');
 const Movie = require('./routes/movie/model.js').Movie;
-var CronJob = require('cron').CronJob;
+const CronJob = require('cron').CronJob;
 
 async function deleteOldMovies() {
 	let diffDate;
 	let now = Date.now();
 	let docs = await Movie.find({}).exec();
-	docs.forEach(async (e) => {
-		for (var file in e.files)
+	for (const e of docs) {
+		for (let file in e.files)
 		{
 			if (e.files[file].complete)
 			{
@@ -21,12 +21,12 @@ async function deleteOldMovies() {
 					await Movie.deleteOne({imdb : e.imdb}).exec();
 				else
 				{
-					e.markModified('files')
+					e.markModified('files');
 					await e.save();
 				}
 			}
 		}
-	});
+	}
 }
 
 function deleteFolderRecursive(path) {

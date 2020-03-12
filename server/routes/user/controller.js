@@ -1,9 +1,8 @@
 const User = require('./model.js');
 const formidable = require('formidable');
-const fs = require('fs-extra');
-const uuidv1 = require('uuid/v1');
 const bcrypt = require('bcrypt');
-const utilities = require('../auth/utilities.js');
+const utilitiesAuth = require('../auth/utilities.js');
+const utilitiesUser = require('./utilities');
 const addAvatar = require('../auth/controller.js').addAvatar;
 
 async function displayMyInfo(req, res) {
@@ -62,7 +61,7 @@ async function changeMyInfo(req, res) {
 	if (type === 'img')
 		return changeAvatar(user, req, res);
 	else if (type === 'user')
-		return changeData(user, req, res);
+		return changeUserInfo(user, req, res);
 	else if (type === 'mdp')
 		return changePassword(user, req, res);
 	else
@@ -85,14 +84,7 @@ async function editLang(req, res) {
 	}
 }
 
-async function checkComplete(user) {
-	if (!user.complete && user.username && user.lastname
-		&& user.avatar && user.mail)
-	{
-		user.complete = true;
-		await user.save();
-	}
-}
+
 
 async function changeAvatar(user, req, res) {
 	var form = new formidable.IncomingForm();
@@ -111,13 +103,13 @@ async function changeAvatar(user, req, res) {
 		user.avatar = img.path;
 		await user.save();
 		if (!user.complete)
-			await checkComplete(user);
+			await utilitiesUser.checkCompleteUserInfo(user);
 		return res.send(user);
 	}
 	else
 		return res.send({error: img.error});
 }
-async function changeData(user, req, res) {
+async function changeUserInfo(user, req, res) {
 	let err = [];
 	const { username, lastname, firstname, mail } = req.body;
 	const obj = { username: username, lastname: lastname,
@@ -128,7 +120,7 @@ async function changeData(user, req, res) {
 		{
 			err.push({
 				field: prop,
-				error: await utilities.checkInfo(prop, obj[prop])
+				error: await utilitiesAuth.checkInfo(prop, obj[prop])
 			});
 			user[prop] = obj[prop]
 		}
@@ -138,7 +130,7 @@ async function changeData(user, req, res) {
 	{
 		await user.save();
 		if (!user.complete)
-			await checkComplete(user);
+			await utilitiesUser.checkCompleteUserInfo(user);
 		return res.send(user);
 	}
 	else
@@ -149,24 +141,24 @@ async function changePassword(user, req, res) {
 	const { password, cfpassword } = req.body;
 	err.push({
 		filed: 'password',
-		error: await utilities.checkInfo('password', password)
+		error: await utilitiesAuth.checkInfo('password', password)
 	});
 	err.push({
 		filed: 'cfpassword',
-		error: await utilities.checkInfo('cfpassword', password, cfpassword)
+		error: await utilitiesAuth.checkInfo('cfpassword', password, cfpassword)
 	});
 	err = err.filter(e => e.error);
 	if (err.length === 0){
-		let pass = bcrypt.hashSync(profile.password, 10);
-		user.password = pass;
+		user.password = bcrypt.hashSync(profile.password, 10);
 		await user.save();
 		if (!user.complete)
-			await checkComplete(user);
+			await utilitiesUser.checkCompleteUserInfo(user);
 		return res.send(user);
 	}
 	else
 		return res.send({error : err})
 }
+
 async function addView(req, res) {
 	const { id, title, imdb } = req.body;
 	try {
@@ -175,7 +167,7 @@ async function addView(req, res) {
 		{
 			if (!user.views.includes(title))
 			{
-			user.views.push({title: title, imdb: imdb})
+			user.views.push({title: title, imdb: imdb});
 			await user.save();
 			}
 			return res.sendStatus(200);
@@ -188,13 +180,14 @@ async function addView(req, res) {
 		return res.sendStatus(404);
 	}
 }
+
 async function delView(req, res) {
 	const { id } = req.body;
 	try {
 		let user = await User.findById(id);
 		if (user)
 		{
-			user.views = []
+			user.views = [];
 			await user.save();
 			return res.sendStatus(200);
 		}

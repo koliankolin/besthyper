@@ -2,7 +2,7 @@ const fs = require('fs');
 const torrentStream = require('torrent-stream');
 var ffmpeg = require('fluent-ffmpeg');
 const pump = require('pump');
-var Movie = require('./model.js').Movie;
+var Movie = require('../model.js').Movie;
 const trackers = [
 	'udp://p4p.arenabg.com:1337',
 	'udp://exodus.desync.com:6969',

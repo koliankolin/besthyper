@@ -1,39 +1,26 @@
-//ESSENTIAL COMPOSANT
-const http = require('http');
 const express = require('express');
-const fs = require('fs');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-var cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose');
-const path = require('path');
-var jwt  = require('jsonwebtoken');
-var User = require('./routes/user/model.js');
-require('dotenv').config()
+const jwt  = require('jsonwebtoken');
+const User = require('./routes/user/model.js');
 
-//PORT
-const port = 3001;
-
-//CONFIG VARIABLES
+const PORT = 3001;
 const app = express();
-const server = require('http').Server(app);
-const dbServer = 'localhost';
-const database = 'hypertube';
 
-//DATABASE ET CONNEXION
 mongoose.connect(`mongodb+srv://user:user@hypertube-re3ev.mongodb.net/test?retryWrites=true&w=majority`, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
 	useUnifiedTopology: true
 });
-var db = mongoose.connection;
+let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
 	console.log('Db connection succeed');
 })
 
-//CRONJOB
 require('./cronjob.js');
 
 //ROUTERS
@@ -50,13 +37,11 @@ app.use(function(req, res, next) {
 	next();
 });
 app.use(helmet());
-app.use(cookieParser(process.env.COOKIE_KEY))
+app.use(cookieParser(process.env.COOKIE_KEY));
 app.use('/files', express.static(__dirname + '/files'));
-//app.use(express.static(__dirname + '/build'));//PROD
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(passport.initialize());
-//MIDDLEWARE CRSF
 app.use(async function (req, res, next) {
 	let reg = /^\/(user|library|movie)/;
 	let cookie = req.signedCookies.accessToken;
@@ -79,7 +64,6 @@ app.use(async function (req, res, next) {
 });
 
 
-//ROUTERS API
 app.use('/user', userRouter);
 app.use('/library', libraryRouter);
 app.use('/movie', movieRouter);
@@ -89,6 +73,6 @@ app.use('/auth', authRouter);
 app.use(function(req, res, next) {
 	res.status(404).send('Sorry cant find that!');
 });
-app.listen(port, function () {
-	console.log('\x1b[1m', `Server ready on port ${port}`, '\x1b[0m');
+app.listen(PORT, function () {
+	console.log('\x1b[1m', `Server ready on port ${PORT}`, '\x1b[0m');
 });

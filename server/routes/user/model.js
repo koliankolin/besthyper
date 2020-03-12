@@ -1,7 +1,7 @@
-let mongoose = require('mongoose');
-let Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 //SCHEMA MANAGE USER
-let userSchema = new Schema({
+const userSchema = new Schema({
 	username: String,
 	lastname: String,
 	firstname: String,

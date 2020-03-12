@@ -1,5 +1,4 @@
 const Movie = require('./model.js').Movie;
-const User = require('../user/model.js');
 
 async function getMovieInfo(req, res) {
 	const { imdb } = req.params;

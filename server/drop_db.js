@@ -5,7 +5,7 @@ mongoose.connect(`mongodb+srv://user:user@hypertube-re3ev.mongodb.net/test?retry
 	useCreateIndex: true,
 	useUnifiedTopology: true
 });
-var db = mongoose.connection;
+const db = mongoose.connection;
 if (process.argv.includes('Movie'))
 	db.collections['Movie'].drop( function(err) {
     console.log('collection Movie dropped');

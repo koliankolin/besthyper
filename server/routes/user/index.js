@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var ctrl = require('./controller.js');
+const express = require('express');
+const router = express.Router();
+const ctrl = require('./controller.js');
 
 router.get('/me/:id', ctrl.displayMyInfo);
 router.get('/other/:username', ctrl.displayOtherInfo);

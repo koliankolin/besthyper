@@ -3,13 +3,10 @@ const srt2vtt = require('srt2vtt');
 const request = require('request');
 const zlib = require('zlib');
 const axios = require('axios');
-const Sub = require('./model.js').Sub;
+const Sub = require('../model.js').Sub;
 
-//ASKING DATABASE FOR EXISTING SUBTITLES (based on imdb)
-//IF EXISTING, SEND THEM, ELSE ASKING OPENSUBTITLES.org 
-//AND DOWNLOAD/CONVERT THEM ON SERV 
 async function searchSub(req, res) {
-	var { imdb } = req.query;
+	let { imdb } = req.query;
 	if (/^tt/.test(imdb))
 		imdb = imdb.slice(2);
 	try {
@@ -22,8 +19,8 @@ async function searchSub(req, res) {
 		return res.send([]);
 	}
 
-	var sendres = 0;
-	var newSub = new Sub({
+	let sendres = 0;
+	let newSub = new Sub({
 		movie_imdb: imdb,
 		files: []
 	});

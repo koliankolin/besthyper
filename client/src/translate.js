@@ -2,54 +2,54 @@ const translate = {
 	navbar: {
 		home: {
 			eng: 'Home',
-			fr: 'Accueil'
+			fr: 'Домой'
 		},
 		profil: {
 			eng: 'Profile',
-			fr: 'Profil'
+			fr: 'Профиль'
 		},
 		logout: {
 			eng: 'Logout',
-			fr: 'Déconnexion'
+			fr: 'Разлогиниться'
 		}
 	},
 
 	form: {
 		placeholderName: {
 			eng: 'Name',
-			fr: 'Nom'
+			fr: 'Логин'
 		},
 		placeholderFirstname: {
 			eng: 'Firstname',
-			fr: 'Prénom'
+			fr: 'Имя Первое'
 		},
 		placeholderUsername: {
 			eng: 'Username',
-			fr: 'Identifiant'
+			fr: 'Имя Юзера'
 		},
 		placeholderMail: {
 			eng: 'Email',
-			fr: 'Email'
+			fr: 'Е-мейл'
 		},
 		placeholderPassword: {
 			eng: 'Password',
-			fr: 'Mot de passe'
+			fr: 'Пароль'
 		},
 		placeholderConfirm: {
 			eng: 'Confirm password',
-			fr: 'Confirmation du mot de passe'
+			fr: 'Подтверждение пароля'
 		},
 		labelImg: {
 			eng: 'Click or drag your avatar here',
-			fr: 'Cliquez ou déposez votre image ici'
+			fr: 'Нажми или перетащи картиночку'
 		},
 		submitModify: {
 			eng: 'Modify',
-			fr: 'Modifier'
+			fr: 'Изменить'
 		},
 		emptyFields: {
 			eng: 'At least one field is empty',
-			fr: 'Au moins un des champs est vide'
+			fr: 'Какое-то поле че-то пустое'
 		}
 	},
 
@@ -57,80 +57,80 @@ const translate = {
 	login: {
 		slogan: {
 			eng: 'Login, set up yourself, enjoy your movie !',
-			fr: 'Connecte toi, installe toi, bonne séance !'
+			fr: 'Залогинься, установи себя и получай удовольствие !'
 		},
 		loginToken: {
 			eng: "You must validate your account before logging in, go to your mailbox.",
-			fr: "Vous devez valider votre compte avant de vous connecter, rendez-vous sur votre boîte mail."
+			fr: "Придется подтвердить е-мейл перед логином, иди в свой ящик."
 		},
 		loginPass: {
 			eng: "Bad password.",
-			fr: "Mauvais mot de passe."
+			fr: "Bad пароль"
 		},
 		loginUser: {
 			eng: "Unknown user.",
-			fr: "Utilisateur inconnu."
+			fr: "Не знаем такого юзера"
 		},
 
 		form: {
 			connexion: {
 				title: {
 					eng: 'SIGN IN',
-					fr: 'CONNEXION',
+					fr: 'ВОЙТИ',
 				},
 				submitButton: {
 					eng: 'Login',
-					fr: 'Se connecter',
+					fr: 'Залогиниться',
 				},
 				forgotPass: {
 					eng: 'Forgot your password ?',
-					fr: 'Mot de passe oublié ?'
+					fr: 'Забыл парольчик ?'
 				},
 			},
 
 			registration: {
 				title: {
 					eng: 'REGISTER',
-					fr: 'INSCRIPTION'
+					fr: 'ЗАРЕГАТЬСЯ'
 				},
 				submitButton: {
 					eng: 'Create my account',
-					fr: 'Créer mon compte'
+					fr: 'Создать акк'
 				},
 				mailActivate: {
 					eng: "A confirmation email has been sent to you.",
-					fr: "Un mail de confirmation vous a été envoyé."
+					fr: "Письмо с подтверждением отослано."
 				},
 				mailValidate: {
 					eng: "Your account is activated, you will be able to connect.",
-					fr: "Votre compte est activé, vous allez pouvoir vous connecter."
+					fr: "Твой акк активирован, можешь залазить."
 				}
 			},
 
 			omniauth: {
 				eng: 'Connect with ',
-				fr: 'Connecte toi avec ',
+				fr: 'Подключиться с ',
 			},
 			forgot: {
 				back: {
 					eng: ' Back',
-					fr: ' Retour'
+					fr: ' Назад'
 				},
 				send: {
 					eng: 'Send',
-					fr: 'Envoyer'
+					fr: 'Отправленно'
 				},
 				title: {
 					eng: 'Enter your username, you will receive a reset mail',
-					fr: "Rentre ton identifiant, tu recevras un mail de réinitialisation à l'adresse que tu as indiqué"
+					fr: "Введи свой логин и получи письмо"
 				},
 				mail: {
 					eng: "An email has been sent to you, check your mailbox to republish your password and reconnect",
-					fr: "Un mail vous a été envoyé, allez sur votre boite mail afin de rééditer votre mot de passe et de vous reconnecter"
+					fr: "Е-мейл отправлен тебе, проверь свой ящик, чтобы пароль сменить"
 				},
 				alreadyMail: {
 					eng: "You have already been sent a mail to re-edit your password and log in again",
-					fr: "Un mail vous déjà été envoyé afin de rééditer votre mot de passe et de vous reconnecter"
+					fr: "Тебе уже отправили письмо, чтобы сменить пароль"
 				}
 			}
 		}
@@ -139,54 +139,54 @@ const translate = {
 	library: {
 		complete : {
 			fr : "Veuillez compléter votre ",
-			eng: "Please complete your "
+			eng: "Плиз, заполни "
 		},
 		profil : {
 			fr: "Profil",
-			eng: "Profile"
+			eng: "Профиль"
 		},
 		menu: {
 			popular: {
 				eng: 'Top trends',
-				fr: 'Top tendances'
+				fr: 'Топчики'
 			},
 			lastadded: {
 				eng: 'Last added',
-				fr: 'Les derniers ajouts'
+				fr: 'Последние добавки'
 			},
 			random: {
 				eng: 'Random',
-				fr: 'Aléatoire'
+				fr: 'Рандомчик'
 			},
 			search: {
 				eng: 'Search',
-				fr: 'Rechercher'
+				fr: 'Поиск'
 			}
 		},
 		filterAndSort: {
 			gender: {
-				eng: 'GENDERS',
-				fr: 'GENRES'
+				eng: 'GENRES',
+				fr: 'ЖАНРЫ'
 			},
 			year: {
 				eng: 'YEARS',
-				fr: 'ANNÉES',
+				fr: 'ГОДА',
 			},
 			ratings: {
 				eng: 'RATINGS',
-				fr: 'SCORES'
+				fr: 'РЕЙТИНГ'
 			},
 			name: {
 				eng: 'NAME',
-				fr: 'NOM'
+				fr: 'ИМЯ'
 			},
 			sortLabel: {
 				eng: 'ORDER BY : ',
-				fr: 'TRIER PAR : '
+				fr: 'СОРТИРОВКА ПО : '
 			},
 			none: {
 				eng: 'none',
-				fr: 'aucun'
+				fr: 'ничего'
 			}
 		},
 	},
@@ -194,103 +194,103 @@ const translate = {
 	movie: {
 		backlink: {
 			eng: '<- Back to catalogue',
-			fr: '<- Retour au catalogue'
+			fr: '<- Назад к выбору'
 		},
 		year: {
 			eng: 'Release date',
-			fr: 'Date de sortie'
+			fr: 'Дата создания'
 		},
 		director: {
 			eng: 'Director',
-			fr: 'Directeur'
+			fr: 'Режиссер'
 		},
 		actor: {
 			eng: 'Actors',
-			fr: 'Acteurs'
+			fr: 'Актеры'
 		},
 		gender: {
-			eng: 'Gender',
-			fr: 'Genre'
+			eng: 'Genre',
+			fr: 'Жанр'
 		},
 		form: {
 			title: {
 				eng: 'Comments',
-				fr: 'Commentaires'
+				fr: 'Комменты'
 			},
 			textarea: {
 				eng: 'Write your comment here',
-				fr: 'Écrivez votre commentaire'
+				fr: 'Напиши свой коммент'
 			},
 			submit: {
 				eng: 'Post',
-				fr: 'Envoyer'
+				fr: 'Постануть'
 			}
 		},
 		tTable: {
 			quality: {
 				eng: 'Quality',
-				fr: 'Qualité',
+				fr: 'Качество',
 			},
 			language: {
 				eng: 'Language',
-				fr: 'Langage'
+				fr: 'Язык'
 			},
 			link: {
 				eng: 'Link',
-				fr: 'Lien'
+				fr: 'Ссылочка'
 			}
 		},
 		subtitles: {
 			eng: 'Subtitles are available',
-			fr: 'Des sous-titres sont disponibles'
+			fr: 'Субтитры буду, жди'
 		}
 	},
 
 	profil: {
 		personnal: {
 			eng: 'Personnal informations',
-			fr: 'Informations personnelles',
+			fr: 'Твой инфа о тебе',
 		},
 		password: {
 			eng: 'Password',
-			fr: 'Mot de passe'
+			fr: 'Парольчик'
 		},
 		clear: {
 			eng: 'Clear',
-			fr: 'Effacer'
+			fr: 'Очистить'
 		},
 		img: {
 			eng: 'Picture',
-			fr: 'Image'
+			fr: 'Картиночка'
 		},
 		imgdrop: {
 			eng: 'Click or drop your image here',
-			fr: 'Cliquez ou déposez votre image ici',
+			fr: 'Нажми или перетяни картиночку сюда',
 		},
 		pwd: {
 			eng: 'Change your password',
-			fr: 'Modifier votre mot de passe'
+			fr: 'Смени пароль'
 		},
 		history: {
 			eng: 'Watched movie history',
-			fr: 'Historique des films regardés'
+			fr: 'Зацени свою историю просмотров'
 		},
 		pwdModify: {
 			eng: 'Your password has been updated.',
-			fr: 'Votre mot de passe a été actualisé.'
+			fr: 'Парольчик был сменен.'
 		},
 		update: {
 			avatar: {
 				eng: 'Avatar successfuly updated',
-				fr: "L'avatar a ete mis a jour"
+				fr: "Аватарка апдейтнута"
 			},
 			complete: {
-				eng: 'Your profil is now completed',
-				fr: 'Votre profil est desormais complet',
+				eng: 'Your profilе is now completed',
+				fr: 'Твой профиль наконец-то заполнен',
 			},
 			general: {
 				eng: 'Settings are now update',
-				fr: 'Les parametres ont ete mis a jour',
+				fr: 'Настроички апдейтнуты',
 			},
 		},
 	},
@@ -298,50 +298,50 @@ const translate = {
 	error: {
 		format: {
 			eng: 'Format is incorrect',
-			fr: 'Le format est incorrect'
+			fr: 'Формат не тот'
 		},
 		size: {
 			eng: 'File size too big',
-			fr: 'La taille du fichier est trop grande'
+			fr: 'Большеват файлик'
 		},
 		length: {
-			eng: 'Too many caracters',
-			fr: 'Trop de caractères'
+			eng: 'Too many characters',
+			fr: 'Много буковок'
 		},
 		unknow: {
 			eng: 'An error occured, please try again',
-			fr: 'Une erreur est survenue, veuillez réessayer',
+			fr: 'Че-то ошибка какая-то, попробуй еще разок',
 		},
 		empty: {
 			eng: 'Empty field',
-			fr: 'Le champ est vide'
+			fr: 'Поле постовато'
 		},
 		imTeapot: {
 			eng: 'Unknown error ...',
-			fr: 'Erreur inconnue rip'
+			fr: 'Не знаем, что происходит...'
 		},
 		unAuthorized: {
 			eng: 'Your session has expired please relog in',
-			fr: 'Votre session a expire, merci de vous reconnecter',
+			fr: 'Сессия закончилась твоя, залогинься заново, чтобы продлить',
 		},
 		diff: {
 			eng: 'Passwords are differents',
-			fr: 'Les mots de passe sont differents',
+			fr: 'Не смог повторить пароль',
 		},
 		alreadyTaken: {
 			eng: 'Already taken',
-			fr: 'Deja utilise',
+			fr: 'Уже существует',
 		},
 	},
 
 	notFoundPage: {
 		title: {
 			eng: 'This page no longer exists',
-			fr: 'Cette page n existe plus',
+			fr: 'Данную страницу мы не предполагали',
 		},
 		body: {
 			eng: "You'll be redirected in few second",
-			fr: "Vous serez redirige sur l'acceuil dans quelques secondes"
+			fr: "Редирекнут тебя совсем скоро"
 		}
 	}
 }

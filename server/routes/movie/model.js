@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
-//IMDB = id du torrent, in files 'type' = quality of the movie
-var movieSchema = new mongoose.Schema({
+const movieSchema = new mongoose.Schema({
 	title: { type: String, require: true, unique: true },
 	imdb: { type: String, require: true, unique: true },
 	files: {
@@ -23,9 +22,9 @@ var movieSchema = new mongoose.Schema({
 		} 
 	],
 });
-var Movie = mongoose.model('Movie', movieSchema);
+const Movie = mongoose.model('Movie', movieSchema);
 
-var subSchema = new mongoose.Schema({
+const subSchema = new mongoose.Schema({
 	movie_imdb: { type: String, require: true, unique: true },
 	files: [
 		{
@@ -34,7 +33,7 @@ var subSchema = new mongoose.Schema({
 		}
 	]
 });
-var Sub = mongoose.model('Subtitle', subSchema);
+const Sub = mongoose.model('Subtitle', subSchema);
 
 exports.Movie = Movie;
 exports.Sub = Sub;

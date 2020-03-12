@@ -1,6 +1,5 @@
-const Movie = require('./model.js').Movie;
-const User = require('../user/model.js');
-
+const Movie = require('../model.js').Movie;
+const User = require('../../user/model.js');
 
 async function addComment(req, res) {
 	const { imdb, id, comment } = req.body;
@@ -29,7 +28,7 @@ async function addComment(req, res) {
 	}
 }
 
-async function delComment(req, res) {
+async function deleteComment(req, res) {
 	const { imdb, id, commentId } = req.body;
 	try {
 		let dbRes = await Movie.findOne({imdb: imdb}).exec(); 
@@ -96,5 +95,5 @@ async function checkDb(req) {
 }
 
 module.exports.addComment = addComment;
-module.exports.delComment = delComment;
+module.exports.delComment = deleteComment;
 module.exports.displayComment = displayComment;
