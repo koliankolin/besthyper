@@ -35,11 +35,6 @@ function Auth() {
   return (
     <>
       <section className="auth">
-        <div className="pres">
-          <h1>HYPERTUBE</h1>
-          <p>{trans.login.slogan[state.lang]}</p>
-          <img src="https://www.cinehorizons.net/sites/default/files/affiches/42.jpg" alt="film 42" />
-        </div>
         <div>
           <Tabs
             className="tabAuth"

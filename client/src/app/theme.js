@@ -1,5 +1,5 @@
 import { createMuiTheme } from '@material-ui/core';
-import yellow from '@material-ui/core/colors/yellow';
+import purple from '@material-ui/core/colors/purple';
 import amber from '@material-ui/core/colors/amber';
 import red from '@material-ui/core/colors/red';
 
@@ -7,9 +7,9 @@ export function createHypertubeTheme() {
   return createMuiTheme({
     palette: {
       primary: {
-        light: yellow[600],
-        main: yellow[700],
-        dark: yellow[800]
+        light: purple[600],
+        main: purple[700],
+        dark: purple[800]
       },
       secondary: {
         light: amber[300],
