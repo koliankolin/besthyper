@@ -77,7 +77,7 @@ async function editLang(req, res) {
 	{
 		if (user.lang !== lang)
 		{
-			user.lang === 'eng' ? user.lang = 'fr' : user.lang = 'eng';
+			user.lang === 'eng' ? user.lang = 'ru' : user.lang = 'eng';
 			user.save();
 		}
 		return (res.sendStatus(200));
