@@ -75,7 +75,7 @@ export default function Movie({ imdb }) {
 		}
 		if (movie)
 		{
-			if (state.lang === 'fr')
+			if (state.lang === 'ru')
 				translateSyn(movie.synopsis);
 			else
 				setSynopsis(movie.synopsis);

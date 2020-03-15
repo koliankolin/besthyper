@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link as RouterLink } from '@reach/router'
 import ts from './translate'
-import frenchFlagImg from './assets/images/flag_rus.png'
+import russianFlagImg from './assets/images/flag_rus.png'
 import englishFlagImg from './assets/images/flag_en.png'
 import { useMediaQuery } from '@material-ui/core'
 
@@ -65,7 +65,7 @@ const AppBar = ({
 
   const langMenuItems = [
     { name: 'eng', selected: 'eng' === lang, img: englishFlagImg },
-    { name: 'fr', selected: 'fr' === lang, img: frenchFlagImg },
+    { name: 'ru', selected: 'ru' === lang, img: russianFlagImg },
   ]
 
   const handleLangMenu = item => {
@@ -81,7 +81,7 @@ const AppBar = ({
   const langSection = (
     <div>
       <IconButton onClick={e => handlemenu(e, 'langMenu')}>
-        <img className={classes.langImg} src={lang === 'eng' ? englishFlagImg : frenchFlagImg}
+        <img className={classes.langImg} src={lang === 'eng' ? englishFlagImg : russianFlagImg}
              alt={lang.name}/>
       </IconButton>
       <Menu
