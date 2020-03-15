@@ -61,7 +61,7 @@ function Auth() {
             </a>
             <a href="http://localhost:3001/auth/instagram" className="insta">
               <div className="signLogo">
-                <img src="https://www.shareicon.net/download/2017/07/08/888203_photo.svg" alt="logoInstagram" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/2560px-Instagram_logo_2016.svg.png" alt="logoInstagram" />
                 <p>{trans.login.form.omniauth[state.lang]}Instagram</p>
               </div>
             </a>

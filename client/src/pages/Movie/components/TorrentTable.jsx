@@ -9,7 +9,7 @@ import {
   TableCell,
   IconButton,
 } from '@material-ui/core';
-import frenchFlagImg from '../../../assets/images/flag_fr.png';
+import frenchFlagImg from '../../../assets/images/flag_rus.png';
 import englishFlagImg from '../../../assets/images/flag_en.png';
 import trans from '../../../translate';
 
