@@ -9,7 +9,7 @@ import {
   TableCell,
   IconButton,
 } from '@material-ui/core';
-import frenchFlagImg from '../../../assets/images/flag_rus.png';
+import rusFlagImg from '../../../assets/images/flag_rus.png';
 import englishFlagImg from '../../../assets/images/flag_en.png';
 import trans from '../../../translate';
 
@@ -80,9 +80,9 @@ function getFlagSrcByLang(lang) {
   switch (lang.toLowerCase()) {
     case 'english':
     case 'eng': return englishFlagImg;
-    case 'fre':
-    case 'french':
-    case 'fr': return frenchFlagImg;
+    case 'ru':
+    case 'russian':
+    case 'rus': return rusFlagImg;
     default: return englishFlagImg;
   }
 }

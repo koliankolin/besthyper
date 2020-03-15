@@ -242,7 +242,7 @@ const translate = {
 		},
 		subtitles: {
 			eng: 'Subtitles are available',
-			fr: 'Субтитры буду, жди'
+			fr: 'Субтитры будут, жди'
 		}
 	},
 

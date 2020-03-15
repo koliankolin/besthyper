@@ -5,7 +5,7 @@ async function translate(req, res) {
 	try {
 		let response = await axios({
 			method: 'post',
-			url: `https://translate.yandex.net/api/v1.5/tr.json/translate?key=${process.env.TRANSLATE_KEY}&lang=en-fr`,
+			url: `https://translate.yandex.net/api/v1.5/tr.json/translate?key=${process.env.TRANSLATE_KEY}&lang=en-ru`,
 			data: `text=${req.body.text}`,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		});
