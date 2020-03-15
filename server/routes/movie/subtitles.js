@@ -3,7 +3,7 @@ const srt2vtt = require('srt2vtt');
 const request = require('request');
 const zlib = require('zlib');
 const axios = require('axios');
-const Sub = require('../model.js').Sub;
+const Sub = require('./model.js').Sub;
 
 async function searchSub(req, res) {
 	let { imdb } = req.query;
@@ -85,7 +85,7 @@ function dlUnzipConvert(url, imdb, lang, gogoRes) {
 					if (err)
 						throw err;
 					var path = `./files/subtitles/${imdb}_${lang}.vtt`;
-					console.log(path)
+					console.log(path);
 					fs.writeFileSync(path, vttData);
 					return gogoRes(false, {path: path, lang: lang});
 				});
